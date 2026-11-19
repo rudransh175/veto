@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.reelblocker.step1"
+    android:versionCode="13"
+    android:versionName="1.0">
+    <!-- Step 1: deliberately NO android.permission.INTERNET, no foreground service, no wake-lock. -->
+    <application
+        android:label="Veto"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme">
+        <!-- v3.1: splash is the launcher entry; it hands off to MainActivity. -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <!-- v3.0 block screen: launched by our own accessibility service only. -->
+        <activity
+            android:name=".BlockActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true" />
+        <!-- v3.3 settings-lock gate: PIN + 60 s countdown + typed phrase.
+             App-internal only; applies the pending loosening change itself.
+             v4.1.2: singleTop + onNewIntent guard — a double-tapped gated
+             control re-delivers to the running gate instead of stacking a
+             second one on top of it. -->
+        <activity
+            android:name=".LockGateActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true" />
+        <service
+            android:name=".BlockerAccessibilityService"
+            android:exported="true"
+            android:label="Veto"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+    </application>
+</manifest>
