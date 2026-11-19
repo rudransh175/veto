@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Legacy fallback (launchers that ask for the unqualified resource):
+     the same foreground ring layered on the same black background.
+     minSdk is 26, so the adaptive icon above is what normally ships. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_launcher_background" />
+    <item android:drawable="@drawable/ic_launcher_foreground" />
+</layer-list>
