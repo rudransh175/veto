@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Veto mark: the pink ring with a ~60° gap at the top — the same
+     ring the app draws everywhere (splash, home). Drawn as ONE stroked arc
+     path: centre (54,54), r=30, from (69,28) sweeping 300° clockwise to
+     (39,28), round caps, no fill. Stroke arcs render identically in aapt2
+     and on-device, unlike faked wedge cuts. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M69,28 A30,30 0 1 1 39,28"
+        android:strokeColor="#FA114F"
+        android:strokeWidth="11"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+</vector>
